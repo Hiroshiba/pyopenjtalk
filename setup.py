@@ -80,8 +80,9 @@ ext_modules = [
         name="pyopenjtalk.openjtalk",
         sources=[join("pyopenjtalk", "openjtalk" + ext)] + all_src,
         include_dirs=[np.get_include()] + include_dirs,
-        extra_compile_args=[],
+        extra_compile_args=["/utf-8"],
         extra_link_args=[],
+        libraries=["winmm"],
         language="c++",
         define_macros=[
             ("HAVE_CONFIG_H", None),
@@ -102,8 +103,9 @@ ext_modules += [
         name="pyopenjtalk.htsengine",
         sources=[join("pyopenjtalk", "htsengine" + ext)] + all_htsengine_src,
         include_dirs=[np.get_include(), join(htsengine_src_top, "include")],
-        extra_compile_args=[],
+        extra_compile_args=["/utf-8"],
         extra_link_args=[],
+        libraries=["winmm"],
         language="c++",
     )
 ]
@@ -150,7 +152,7 @@ cmdclass["build_py"] = build_py
 cmdclass["develop"] = develop
 
 
-with open("README.md", "r") as fd:
+with open("README.md", "r", encoding="utf8") as fd:
     long_description = fd.read()
 
 setup(
